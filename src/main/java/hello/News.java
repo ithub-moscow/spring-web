@@ -20,7 +20,7 @@ public class News {
 
     public void addLine(String text) {
         if(text != null)
-            this.text += text;
+            this.text += text + "\n";
     }
 
     @Override

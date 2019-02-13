@@ -8,7 +8,7 @@
     <h1>News</h1>
     <div th:each="n : ${news}">
         <p th:text="${n.title}"></p>
-        <p th:text="${n.text}"></p>
+        <pre th:text="${n.text}"></pre>
     </div>
 </body>
 </html>

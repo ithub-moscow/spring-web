@@ -37,6 +37,8 @@ public class FileNewsRepository implements NewsRepository {
             }
             string = reader.readLine();
         }
+        if(oneNews != null)
+            news.add(oneNews);
 
         return news;
     }
