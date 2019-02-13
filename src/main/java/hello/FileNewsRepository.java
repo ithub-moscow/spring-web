@@ -21,17 +21,21 @@ public class FileNewsRepository implements NewsRepository {
 
         LineNumberReader reader = new LineNumberReader(new InputStreamReader(source));
 
-        String title;
-        while ((title = reader.readLine()) != null) {
-            String s, content = "";
-            while (true) {
-                s = reader.readLine();
-                if(s == null || s.equals(""))
-                    break;
-                content = content + s;
+        String string = reader.readLine();
+
+        News oneNews = null;
+        while (string != null) {
+            if(string.isEmpty()) {
+                if(oneNews != null) {
+                    news.add(oneNews);
+                    oneNews = null;
+                }
+            } else if(oneNews == null) {
+                oneNews = new News(string);
+            } else {
+                oneNews.addLine(string);
             }
-            News oneNews = new News(title, content);
-            news.add(oneNews);
+            string = reader.readLine();
         }
 
         return news;

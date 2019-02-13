@@ -4,27 +4,23 @@ import java.util.Objects;
 
 public class News {
     private String title;
-    private String text;
+    private String text = "";
 
-    public News(String  title, String text) {
+    public News(String title) {
         this.title = title;
-        this.text = text;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void addLine(String text) {
+        if(text != null)
+            this.text += text;
     }
 
     @Override
