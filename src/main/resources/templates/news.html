@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default}">
 <head>
-    <title>News</title>
+    <title th:text="${section}"></title>
 </head>
 <body>
     <div layout:fragment="content">

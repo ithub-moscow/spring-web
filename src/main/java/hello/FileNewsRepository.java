@@ -41,8 +41,16 @@ public class FileNewsRepository implements NewsRepository {
             }
             string = reader.readLine();
         }
+
         if(oneNews != null)
             news.add(oneNews);
+
+        String str = oneNews != null ? "not null" : "null";
+        if(oneNews != null) {
+            str = "not null";
+        } else {
+            str = "null";
+        }
 
         return news;
     }

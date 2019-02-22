@@ -21,9 +21,15 @@ public class GreetingController {
         repository = new FileNewsRepository("news.txt");
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
     @GetMapping("/greeting")
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
         model.addAttribute("name", name);
+        model.addAttribute("section", "greeting");
         return "greeting";
     }
 
@@ -32,6 +38,7 @@ public class GreetingController {
         List<News> news = repository.readNews();
 
         model.addAttribute("news", news);
+        model.addAttribute("section", "news");
 
         return "news";
     }
