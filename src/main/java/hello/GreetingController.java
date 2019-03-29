@@ -1,6 +1,5 @@
 package hello;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -20,7 +18,8 @@ public class GreetingController {
 
     @PostConstruct
     public void init() {
-        repository = new FileNewsRepository("news.txt");
+        repository = new FileNewsRepository(
+                ClassLoader.getSystemResourceAsStream("news.txt"));
     }
 
     @GetMapping("/")
@@ -36,7 +35,7 @@ public class GreetingController {
     }
 
     @GetMapping("/news")
-    public String news(Model model, HttpServletRequest request) throws IOException {
+    public String news(Model model) throws IOException {
         List<News> news = repository.readNews();
 
         model.addAttribute("news", news);
@@ -48,6 +47,6 @@ public class GreetingController {
     @PostMapping
     public String post(HttpServletRequest request) {
         System.out.println("post accepted");
-        return index()
+        return "index";
     }
 }

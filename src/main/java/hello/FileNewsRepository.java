@@ -6,24 +6,20 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class FileNewsRepository implements NewsRepository {
 
-    private String file;
+    private InputStream source;
 
-    public FileNewsRepository(String file) {
-        this.file = file;
+    public FileNewsRepository(InputStream source) {
+        this.source = source;
     }
 
     @Override
     public List<News> readNews() throws IOException {
-        Optional<InputStream> source = Optional.ofNullable(ClassLoader.getSystemResourceAsStream(file));
-
         List<News> news = new ArrayList<>();
 
-        LineNumberReader reader = new LineNumberReader(
-                new InputStreamReader(source.orElseThrow(() -> new RuntimeException("No such resources"))));
+        LineNumberReader reader = new LineNumberReader(new InputStreamReader(source));
 
         String string = reader.readLine();
 
