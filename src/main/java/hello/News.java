@@ -6,6 +6,9 @@ public class News {
     private String title;
     private String text = "";
 
+    public News() {
+    }
+
     public News(String title) {
         this.title = title;
     }
@@ -16,6 +19,14 @@ public class News {
 
     public String getText() {
         return text;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public void addLine(String text) {
@@ -35,5 +46,13 @@ public class News {
     @Override
     public int hashCode() {
         return Objects.hash(title, text);
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
