@@ -8,6 +8,6 @@ public class FIleRepositoryConfig {
 
     @Bean
     public FileRepository fileRepository() {
-        return new MemoryFileRepository();
+        return new StorageFileRepository();
     }
 }

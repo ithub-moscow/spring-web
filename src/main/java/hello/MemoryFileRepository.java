@@ -1,5 +1,7 @@
 package hello;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +16,12 @@ public class MemoryFileRepository implements FileRepository {
         while ((b = is.read()) != -1) {
             fos.write(b);
         }
-        fos.close();
         files.put(name, fos.toByteArray());
+        fos.close();
+    }
+
+    @Override
+    public InputStream read(String name) throws FileNotFoundException {
+        throw new NotImplementedException();
     }
 }
