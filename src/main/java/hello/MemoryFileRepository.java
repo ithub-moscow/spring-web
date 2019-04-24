@@ -4,6 +4,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MemoryFileRepository implements FileRepository {
@@ -23,5 +24,15 @@ public class MemoryFileRepository implements FileRepository {
     @Override
     public InputStream read(String name) throws FileNotFoundException {
         throw new NotImplementedException();
+    }
+
+    @Override
+    public List<String> list() {
+        return null;
+    }
+
+    @Override
+    public void delete(String name) {
+
     }
 }

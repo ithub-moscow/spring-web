@@ -3,6 +3,9 @@ package hello;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.*;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class StorageFileRepository implements FileRepository {
 
@@ -22,5 +25,15 @@ public class StorageFileRepository implements FileRepository {
     @Override
     public InputStream read(String name) throws FileNotFoundException {
         return new FileInputStream(path + "/" + name);
+    }
+
+    @Override
+    public List<String> list() {
+        return asList(new File(path).list());
+    }
+
+    @Override
+    public void delete(String name) {
+
     }
 }
