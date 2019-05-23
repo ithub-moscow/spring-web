@@ -4,22 +4,23 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.http.MediaType.*;
 
 @Controller
-@RequestMapping(path = "/site", consumes = APPLICATION_JSON_VALUE)
+@RequestMapping
 public class GreetingController {
 
     private NewsRepository repository;
 
-    @GetMapping("/")
-    public String index() {
+    @GetMapping(path = "/")
+    public String index(Model model) {
+        model.addAttribute("name", "Without Name");
         return "index";
     }
 
@@ -28,6 +29,12 @@ public class GreetingController {
         model.addAttribute("name", name);
         model.addAttribute("section", "greeting");
         return "greeting";
+    }
+
+    @PostMapping(path = "/accept", consumes = APPLICATION_FORM_URLENCODED_VALUE)
+    public String acceptName(@RequestParam("name") String name, Model model) {
+        model.addAttribute("name", name);
+        return "index";
     }
 
     @GetMapping("/news")

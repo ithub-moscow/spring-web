@@ -1,17 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/default}">
+      layout:decorate="~{layout/default}"
+      xmlns:th="http://www.thymeleaf.org">
 <head> 
     <title>Getting Started: Serving Web Content</title> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
     <div layout:fragment="content">
-        <p>Index</p>
+        <h1 th:text="${name}"></h1>
 
         <form method="post" action="/files" enctype="multipart/form-data">
             <input type="file" name="file" id="file"/>
             <input type="submit" value="Load"/>
+        </form>
+
+        <form action="/accept" method="post">
+            <input type="text" name="name"/>
+            <input type="submit" value="OK"/>
         </form>
     </div>
 </body>

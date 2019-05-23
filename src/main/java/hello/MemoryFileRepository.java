@@ -23,7 +23,7 @@ public class MemoryFileRepository implements FileRepository {
 
     @Override
     public InputStream read(String name) throws FileNotFoundException {
-        throw new NotImplementedException();
+        throw new RuntimeException("Not implemented yet");
     }
 
     @Override
